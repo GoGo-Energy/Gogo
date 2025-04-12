@@ -1,179 +1,108 @@
 "use client";
 import React from "react";
-import { AppBar, Box, Typography, Link, IconButton } from "@mui/material";
-import { Facebook, Twitter, LinkedIn, Instagram } from "@mui/icons-material"; // Social media icons
-import Image from "next/image"; // Import Image from Next.js
+import Image from "next/image";
 
 function Footer() {
+  const scrollToSection = (id: any) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <AppBar
-      position="static"
-      sx={{
-        top: "auto",
-        bottom: 0,
-        backgroundColor: "#FFFFFF", // White background
-        color: "#000000", // Black text color
-        padding: 1, // Reduced padding
-        boxShadow: "0 -2px 10px rgba(0, 0, 0, 0.1)", // Add shadow for depth
-      }}
-    >
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column", // Stack elements vertically
-          alignItems: "center", // Center content horizontally
-          justifyContent: "center", // Center vertically
-          padding: 1, // Reduced padding
-        }}
-      >
-        {/* Logo on Top (optional, and can be reduced) */}
-        <Image
-          src="/logo.png"
-          alt="GOGO Energy Logo"
-          width={100} // Adjust width as needed
-          height={80} // Adjust height as needed
-          style={{ transition: "transform 0.3s ease" }} // Add transition for logo
-          className="footer-logo"
-        />
+    <footer className="bg-white w-full py-12 border-t border-gray-100 shadow-sm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
+          {/* Logo Column */}
+          <div className="flex justify-center md:justify-start">
+            <div className="relative w-[200px] h-[160px] transform transition-transform duration-300 hover:scale-105">
+              <Image
+                src="/logo.png"
+                alt="GOGO Energy Logo"
+                fill
+                loading="lazy"
+                sizes="200px"
+                className="object-contain"
+              />
+            </div>
+          </div>
 
-        {/* Copyright */}
-        <Typography
-          variant="body2"
-          sx={{
-            marginBottom: 1, // Reduced margin
-            color: "#000000", // Black text for copyright text
-            fontSize: "0.8rem", // Reduced font size
-            fontFamily: "Poppins, sans-serif", // Font family applied
-            fontWeight: "bold", // Bold font style
-            letterSpacing: 1, // Add some spacing for better readability
-            transition: "color 0.3s ease", // Smooth transition for color change
-            "&:hover": {
-              color: "#FF4500", // Change color on hover (catchy effect)
-            },
-          }}
-        >
-          &copy; 2024 GOGO ENERGY
-        </Typography>
+          {/* Navigation Links Column */}
+          <div className="flex flex-col items-center md:items-start space-y-4">
+            {["home", "products", "about", "contact-us"].map((section) => (
+              <button
+                key={section}
+                onClick={() =>
+                  scrollToSection(
+                    section === "contact-us" ? "contact" : section
+                  )
+                }
+                className="text-gray-800 font-bold text-lg hover:text-[#FF4500] transform transition-all duration-300 hover:translate-x-1"
+              >
+                {section.charAt(0).toUpperCase() +
+                  section.slice(1).replace("-us", "")}
+              </button>
+            ))}
+          </div>
 
-        {/* Links */}
-        <Box
-          sx={{
-            display: "flex",
-            gap: 2, // Reduced gap between links
-            marginBottom: 2, // Reduced margin
-            justifyContent: "center", // Ensure links are centered
-          }}
-        >
-          <Link
-            href="#"
-            color="inherit"
-            sx={{
-              color: "#000000", // Black text for links
-              textTransform: "uppercase",
-              fontWeight: 600,
-              fontSize: "14px", // Reduced font size
-              fontFamily: "Poppins, sans-serif", // Font family applied
-              letterSpacing: 1.5, // Some letter spacing for visual appeal
-              "&:hover": {
-                color: "#FF4500", // Red color on hover
-                // textDecoration: "underline",
-                transform: "scale(1.05)", // Scale up effect on hover
-                transition: "transform 0.3s ease, color 0.3s ease", // Add transition
+          {/* Contact Information Column */}
+          <div className="flex flex-col items-center md:items-start space-y-8">
+            {/* Contact Sections */}
+            {[
+              {
+                icon: "/Email Image.png",
+                label: "Email",
+                link: "mailto:gogoxenergy@gmail.com",
+                text: "gogoxenergy@gmail.com",
               },
-            }}
-          >
-            Privacy Policy
-          </Link>
-          <Link
-            href="#"
-            color="inherit"
-            sx={{
-              color: "#000000",
-              textTransform: "uppercase",
-              fontWeight: 600,
-              fontSize: "14px", // Reduced font size
-              fontFamily: "Poppins, sans-serif",
-              letterSpacing: 1.5,
-              "&:hover": {
-                color: "#FF4500", // Red color on hover
-                // textDecoration: "underline",
-                transform: "scale(1.05)",
-                transition: "transform 0.3s ease, color 0.3s ease", // Smooth transition
+              {
+                icon: "/Phone Image.png",
+                label: "Phone",
+                link: "tel:+918355908284",
+                text: "+91 83559 08284",
               },
-            }}
-          >
-            Terms of Service
-          </Link>
-        </Box>
+            ].map((item) => (
+              <div
+                key={item.label}
+                className="flex flex-col items-center md:items-start"
+              >
+                <div className="flex items-center mb-2 group">
+                  <div className="relative w-8 h-8 mr-2">
+                    <Image
+                      src={item.icon}
+                      alt={item.label}
+                      fill
+                      className="object-contain transform transition-transform duration-300 group-hover:scale-110"
+                      sizes="32px"
+                    />
+                  </div>
+                  <span className="text-gray-800 font-bold text-lg">
+                    {item.label}
+                  </span>
+                </div>
+                <a
+                  href={item.link}
+                  className="text-[#FF4500] hover:text-[#FF6B00] transition-colors duration-300 text-lg hover:underline"
+                >
+                  {item.text}
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
 
-        {/* Social Media Icons */}
-        <Box
-          sx={{
-            display: "flex",
-            gap: 2,
-            marginBottom: 2,
-            justifyContent: "center", // Center social icons
-          }}
-        >
-          <IconButton
-            sx={{
-              color: "#000000",
-              fontSize: "1.5rem", // Slightly larger size for icons
-              "&:hover": {
-                color: "#FF4500", // Red color on hover
-                transform: "scale(1.2)", // Slight scaling effect
-                transition: "transform 0.3s ease, color 0.3s ease", // Smooth scaling and color change
-              },
-            }}
-            href="#"
-          >
-            <Facebook />
-          </IconButton>
-          <IconButton
-            sx={{
-              color: "#000000",
-              fontSize: "1.5rem", // Slightly larger size for icons
-              "&:hover": {
-                color: "#FF4500", // Red color on hover
-                transform: "scale(1.2)",
-                transition: "transform 0.3s ease, color 0.3s ease",
-              },
-            }}
-            href="#"
-          >
-            <Twitter />
-          </IconButton>
-          <IconButton
-            sx={{
-              color: "#000000",
-              fontSize: "1.5rem", // Slightly larger size for icons
-              "&:hover": {
-                color: "#FF4500", // Red color on hover
-                transform: "scale(1.2)",
-                transition: "transform 0.3s ease, color 0.3s ease",
-              },
-            }}
-            href="#"
-          >
-            <Instagram />
-          </IconButton>
-          <IconButton
-            sx={{
-              color: "#000000",
-              fontSize: "1.5rem", // Slightly larger size for icons
-              "&:hover": {
-                color: "#FF4500", // Red color on hover
-                transform: "scale(1.2)",
-                transition: "transform 0.3s ease, color 0.3s ease",
-              },
-            }}
-            href="#"
-          >
-            <LinkedIn />
-          </IconButton>
-        </Box>
-      </Box>
-    </AppBar>
+        {/* Divider Line */}
+        <div className="border-t border-gray-200 my-8"></div>
+
+        {/* Copyright Text */}
+        <div className="text-center">
+          <p className="text-gray-600 text-sm">
+            © {new Date().getFullYear()} GOGO ENERGY
+          </p>
+        </div>
+      </div>
+    </footer>
   );
 }
 

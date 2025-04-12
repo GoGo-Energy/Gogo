@@ -1,275 +1,112 @@
 "use client";
-
 import React from "react";
-import {
-  Typography,
-  Container,
-  Grid,
-  Box,
-  Card,
-  CardContent,
-} from "@mui/material";
-import { styled } from "@mui/system";
-import GroupsIcon from "@mui/icons-material/Groups";
-import LocalGasStationIcon from "@mui/icons-material/LocalGasStation";
-import NaturePeopleIcon from "@mui/icons-material/NaturePeople";
-import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
-import Image from "next/image"; // Import Image component from next/image
+import Image from "next/image";
+import { motion } from "motion/react";
+// import "../styles/animations.css";
 
-const AboutUsPageContainer = styled(Container)({
-  marginTop: "50px",
-  backgroundColor: "#FFFFFF", // Set background to white
-});
-
-const SectionTitle = styled(Typography)({
-  fontFamily: "Poppins, sans-serif", // Set font to Poppins
-  fontWeight: "bold",
-  fontSize: "36px", // Adjusted to a slightly smaller size for better fit
-  marginBottom: "20px", // Reduced margin for better spacing
-  textAlign: "center",
-  color: "#333333", // Slightly lighter shade of black for a softer appearance
-  transition: "color 0.3s ease", // Smooth color transition
-  "&:hover": {
-    color: "#FFB74D", // Hover effect with a golden color
+const MissionData = [
+  {
+    id: 1,
+    image: "/Gas.png",
+    title: "Reducing The Slope",
+    description:
+      "Help India reduce carbon emissions by 5Mt every year by adopting EVs.",
   },
-});
-
-const AboutUsContent = styled(Box)({
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  marginBottom: "50px",
-  background: "linear-gradient(to right, #FFEFBA, #FFE7C7)", // Soft gradient for background
-  padding: "40px",
-  borderRadius: "12px",
-  boxShadow: "0 12px 24px rgba(0, 0, 0, 0.15)", // Enhanced shadow for a more 3D effect
-  transition: "all 0.3s ease", // Smooth transition for any changes
-  "&:hover": {
-    transform: "scale(1.02)", // Slight scale on hover
-    boxShadow: "0 20px 40px rgba(0, 0, 0, 0.2)", // Darker shadow on hover
+  {
+    id: 2,
+    image: "/Recycle.png",
+    title: "Environmental Impact",
+    description:
+      "Purchasing one e2W helps plants reduce ~500kg of CO2 emission every year. This is equivalent to planting 20 mature trees.",
   },
-  "@media (max-width: 768px)": {
-    flexDirection: "column", // Stack items vertically on smaller screens
-    alignItems: "center",
+  {
+    id: 3,
+    image: "/Social.png",
+    title: "Social Impact",
+    description:
+      "Every EV partnership helps us create more jobs for GiG workers and helps India elevate its GDP/Capital.",
   },
-});
-
-const AboutUsImage = styled(Box)({
-  flex: 1,
-  paddingLeft: "20px",
-  "@media (max-width: 768px)": {
-    paddingLeft: "0", // Remove padding on small screens
-    marginBottom: "20px", // Add margin at the bottom for better spacing
-  },
-  "& img": {
-    width: "90%",
-    maxHeight: "450px",
-    borderRadius: "12px",
-    objectFit: "cover", // Ensure image is nicely cropped and doesn't stretch
-    transition: "transform 0.3s ease", // Smooth image transformation
-    "&:hover": {
-      transform: "scale(1.05)", // Slight zoom on hover
-    },
-  },
-});
-
-const MissionCard = styled(Card)({
-  textAlign: "center",
-  padding: "20px",
-  transition: "transform 0.3s ease, box-shadow 0.3s ease",
-  borderRadius: "12px",
-  backgroundColor: "#FFFFFF",
-  boxShadow: "0 6px 12px rgba(0, 0, 0, 0.05)", // Light shadow for the cards
-  "&:hover": {
-    transform: "scale(1.05)",
-    boxShadow: "0 15px 30px rgba(0, 0, 0, 0.1)", // Enhanced shadow and transform on hover
-  },
-});
+];
 
 const AboutUsPage = () => {
   return (
-    <AboutUsPageContainer maxWidth="lg" id="about">
+    <div className="pt-[88px] bg-white px-4 sm:px-6 lg:px-8" id="about">
       {/* About Us Section */}
-      <SectionTitle variant="h3">About Our Company</SectionTitle>
-      <AboutUsContent>
-        <Box flex={1}>
-          <Typography
-            variant="body1"
-            sx={{
-              fontFamily: "Roboto, sans-serif",
-              fontWeight: "regular",
-              fontSize: "16px",
-              lineHeight: "1.8",
-              color: "#555555", // Lighter gray for better readability
-            }}
-          >
-            At GOGO, we’re committed to sustainability. By transitioning to
-            electric vehicles (EVs), we’re not only offering a profitable
-            solution but also contributing to a cleaner, greener future. Our
-            mission is to reduce carbon emissions, protect natural resources,
-            and play an active role in India’s carbon-free vision.
-          </Typography>
+      <h2 className="font-bold text-3xl sm:text-4xl text-center text-gray-800 mb-8 font-['Poppins'] animate-slide-up">
+        About <span className="text-[#ff601a]">Us</span>
+      </h2>
 
-          <Typography
-            variant="body1"
-            sx={{
-              fontFamily: "Roboto, sans-serif",
-              fontWeight: "regular",
-              fontSize: "16px",
-              lineHeight: "1.8",
-              color: "#555555",
-              marginTop: "20px", // Spacing between paragraphs
-            }}
-          >
-            Our team brings together individuals from diverse and distinguished
-            backgrounds, including experience in Formula Bharat, Hyperloop
-            Transportation, and Satellite development. We harness this
-            collective expertise to drive innovation and shape a sustainable
-            future.
-          </Typography>
-        </Box>
-
-        <AboutUsImage>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 items-center animate-slide-left">
+        <div className="flex justify-center transform transition-all duration-500 hover:scale-105">
           <Image
-            src="/team.png"
+            src="/image3.png"
             alt="Our Team"
             width={700}
             height={450}
-            style={{ borderRadius: "12px" }}
+            className="rounded-xl w-full h-auto shadow-lg"
+            priority
           />
-        </AboutUsImage>
-      </AboutUsContent>
+        </div>
+        <p className="text-base sm:text-lg text-gray-700 leading-relaxed md:text-justify text-center">
+          At GOGO, we are committed to sustainability through innovative
+          electric vehicles (EVs) that reduce carbon emissions, conserve
+          resources, and align with India's carbon-free vision. Our team
+          combines expertise from prestigious projects like Formula Bharat,
+          Hyperloop Transportation, and Satellite development, driving forward
+          advanced, sustainable solutions for a cleaner, greener future.
+        </p>
+      </div>
 
       {/* Mission Section */}
-      <SectionTitle variant="h4">Our Mission</SectionTitle>
-      <Grid container spacing={4}>
-        <Grid item xs={12} sm={4}>
-          <MissionCard style={{ paddingBottom: "65px" }}>
-            <LocalGasStationIcon sx={{ fontSize: 50, color: "primary.main" }} />
-            <CardContent>
-              <Typography variant="h5">Reducing The Slop</Typography>
-              <Typography
-                sx={{
-                  fontFamily: "Roboto, sans-serif",
-                  fontSize: "16px",
-                  color: "#000000",
-                }}
-              >
-                Help India reduce carbon emissions by 5Mt every year by adopting
-                EVs.
-              </Typography>
-            </CardContent>
-          </MissionCard>
-        </Grid>
+      <h2 className="font-bold text-3xl sm:text-4xl text-center text-gray-800 mb-8 font-['Poppins'] animate-slide-up">
+        Our <span className="text-[#ff601a]">Mission</span>
+      </h2>
 
-        <Grid item xs={12} sm={4}>
-          <MissionCard>
-            <NaturePeopleIcon sx={{ fontSize: 50, color: "primary.main" }} />
-            <CardContent>
-              <Typography variant="h5">Environmental Impact</Typography>
-              <Typography
-                sx={{
-                  fontFamily: "Roboto, sans-serif",
-                  fontSize: "16px",
-                  color: "#000000",
-                }}
-              >
-                Purchasing one e2W helps plants reduce ~500kg of CO2 emission
-                every year. Which is equivalent to planting 20 mature trees.
-              </Typography>
-            </CardContent>
-          </MissionCard>
-        </Grid>
-
-        <Grid item xs={12} sm={4}>
-          <MissionCard style={{ paddingBottom: "45px" }}>
-            <GroupsIcon sx={{ fontSize: 50, color: "primary.main" }} />
-            <CardContent>
-              <Typography variant="h5">Social Impact</Typography>
-              <Typography
-                sx={{
-                  fontFamily: "Roboto, sans-serif",
-                  fontSize: "16px",
-                  color: "#000000",
-                }}
-              >
-                Every EV partnership helps us create more jobs for GiG workers
-                and helps India elevate its GDP/Capita.
-              </Typography>
-            </CardContent>
-          </MissionCard>
-        </Grid>
-      </Grid>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {MissionData.map((item, index) => (
+          <div
+            key={item.id}
+            className={`bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-slide-up stagger-${
+              index + 1
+            }`}
+          >
+            <div className="relative w-[150px] h-[150px] mx-auto mb-5">
+              <Image
+                src={item.image}
+                alt={item.title}
+                fill
+                sizes="150px"
+                className="object-contain"
+              />
+            </div>
+            <h3 className="font-semibold text-xl text-gray-800 mb-2">
+              {item.title}
+            </h3>
+            <p className="text-gray-600 text-sm leading-relaxed">
+              {item.description}
+            </p>
+          </div>
+        ))}
+      </div>
 
       {/* Vision Section */}
-      <Box
-        sx={{ marginTop: "70px", marginBottom: "50px", textAlign: "center" }}
-      >
-        <SectionTitle variant="h4">Our Vision</SectionTitle>
-        <MissionCard
-          sx={{
-            backgroundColor: "#F3F4F6",
-            display: "inline-block",
-            padding: "40px",
-            borderRadius: "12px",
-            boxShadow: 3,
-          }}
-        >
-          <CardContent>
-            <Typography
-              variant="h5"
-              sx={{ fontWeight: "bold", marginBottom: "20px" }}
-            >
-              Strategic Partnerships for Growth
-            </Typography>
-            <Typography
-              sx={{
-                fontFamily: "Roboto, sans-serif",
-                fontSize: "16px",
-                color: "#333333",
-                lineHeight: 1.6,
-              }}
-            >
-              Our goal is to offer gig workers hassle-free access to a reliable
-              swapping network, empowering their growth.
-              <br />
-              We are building a robust network with BaaS/EaaS and delivery
-              partners to drive sales and expansion.
-            </Typography>
-          </CardContent>
-        </MissionCard>
-      </Box>
+      <div className="mt-16">
+        <h2 className="font-bold text-3xl sm:text-4xl text-center text-gray-800 mb-8 font-['Poppins'] animate-slide-up">
+          Our <span className="text-[#ff601a]">Vision</span>
+        </h2>
 
-      {/* Target Audience Section */}
-      <Box sx={{ marginTop: "50px", marginBottom: "70px" }}>
-        <SectionTitle variant="h4">Target Audience</SectionTitle>
-        <Grid container spacing={4} justifyContent="center">
-          <Grid item xs={12} sm={10}>
-            <MissionCard>
-              <PeopleAltIcon sx={{ fontSize: 60, color: "primary.main" }} />
-              <CardContent>
-                <Typography variant="h5">
-                  Individuals & Businesses Seeking Sustainable Solutions
-                </Typography>
-                <Typography
-                  sx={{
-                    marginTop: "20px",
-                    fontFamily: "Roboto, sans-serif",
-                    fontSize: "16px",
-                    color: "#000000",
-                  }}
-                >
-                  Our audience ranges from eco-conscious individuals to
-                  large-scale organizations looking to reduce their carbon
-                  footprint by adopting electric vehicles and energy-efficient
-                  technologies.
-                </Typography>
-              </CardContent>
-            </MissionCard>
-          </Grid>
-        </Grid>
-      </Box>
-    </AboutUsPageContainer>
+        <div className="flex justify-center">
+          <div className="p-6 w-full md:w-2/3 lg:w-1/2 rounded-lg bg-gradient-to-br from-white to-orange-100 shadow-md transform transition-all duration-500 hover:shadow-lg animate-slide-left">
+            <p className="text-center text-gray-800 text-lg leading-relaxed">
+              "Our goal is to offer gig workers hassle-free access to a reliable
+              swapping network, empowering their growth. We are building a
+              robust network with BaaS/EaaS and delivery partners to drive sales
+              and expansion."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
